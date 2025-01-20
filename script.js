@@ -83,6 +83,7 @@ function resetTimer() {
     document.getElementById("goal").textContent = goal;
     document.querySelectorAll('.bit.active').forEach(bit => {
         bit.classList.remove("active")
+        bit.textContent = "0"
     });
     document.getElementById("sum").textContent = "0";
     clearInterval(timerInterval);
