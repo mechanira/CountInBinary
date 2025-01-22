@@ -15,7 +15,6 @@
             <h3>
                 Current Value:
                 <span class="prepend" id="sum-prepend">00</span><span id="sum">0</span>
-                <span style="color: #444">/</span>
                 <span class="prepend" id="goal-prepend"></span><span id="goal"></span>
             </h3>
             <div id="byte-container">
@@ -29,20 +28,19 @@
                 </div><div class="bit" data-value="1">0
                 </div>
             </div>
-
-            <div class="stopwatch">
-                <h3><span id="timer">0.</span><span id="timer-ms">000</span></h3>
-                <button id="reset-btn" onclick="resetTimer()">Reset</button>
-            </div>
-
             <div id="mode-container">
-                <h3>Modes</h3>
                 <div id="speedrun-mode" class="mode-btn active">Speedrun
                 </div><div id="timer-mode" class="mode-btn">Timer
                 </div><div id="free-mode" class="mode-btn">Free</div>
             </div>
-        </div>
-        
+
+            <h4 id="points">Points: <span id="point-span">0</span></h4>
+
+            <div id="stopwatch">
+                <h3><span id="timer">0.</span><span id="timer-ms">000</span></h3>
+                <button id="reset-btn" onclick="resetGame()">Reset</button>
+            </div>
+        </div>        
     </div>
 
     <script src="script.js"></script>

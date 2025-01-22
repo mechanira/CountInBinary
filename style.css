@@ -9,9 +9,12 @@ body {
     transition: background-color 0.1s ease-out;
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
     text-align: center;
+}
+
+#block {
+    margin-top: 200px;
 }
 
 .byte-container {
@@ -36,11 +39,10 @@ body {
     color: gray;
     transition: 0.1s;
 }
-.stopwatch {
+#stopwatch {
     margin-top: 20px;
     font-size: 18px;
 }
-
 #timer {
     font-size: 32px;
 }
@@ -53,6 +55,7 @@ body {
     color: white;
     width: 100px;
     height: 40px;
+    margin-bottom: 20px;
     font-size: 20px;
     background-color: #101010;
     border: 2px solid white;
@@ -68,7 +71,12 @@ h2 {
     font-size: 40px;
 }
 h3 {
+    margin: 20px;
     font-size: 32px;
+}
+h4 {
+    margin: 20px;
+    font-size: 26px;
 }
 p {
     font-size: 18px;
@@ -78,17 +86,17 @@ p {
 }
 
 #mode-container {
-    display: block
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .mode-btn {
     display: inline-block;
-    width: 120px;
-    height: 60px;
-    line-height: 60px;
+    width: 170px;
+    height: 40px;
+    line-height: 40px;
     font-size: 20px;
-    border: white solid 2px;
-    margin: 0 10px;
     cursor: pointer;
     user-select: none;
     transition: 0.2s;
@@ -101,4 +109,8 @@ p {
 .mode-btn.active {
     background-color: white;
     color: gray;
+}
+
+#points {
+    display: none;
 }
