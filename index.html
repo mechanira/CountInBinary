@@ -12,7 +12,12 @@
         <div id="block">
             <h2>Count In Binary</h2>
             <p>Match the value using bits below</p>
-            <h3>Current Value: <span id="sum">0</span> / <span id="goal">1</span></h3>
+            <h3>
+                Current Value:
+                <span class="prepend" id="sum-prepend">00</span><span id="sum">0</span>
+                <span style="color: #444">/</span>
+                <span class="prepend" id="goal-prepend"></span><span id="goal"></span>
+            </h3>
             <div id="byte-container">
                 <div class="bit" data-value="128">0
                 </div><div class="bit" data-value="64">0
@@ -28,6 +33,13 @@
             <div class="stopwatch">
                 <h3><span id="timer">0.</span><span id="timer-ms">000</span></h3>
                 <button id="reset-btn" onclick="resetTimer()">Reset</button>
+            </div>
+
+            <div id="mode-container">
+                <h3>Modes</h3>
+                <div id="speedrun-mode" class="mode-btn active">Speedrun
+                </div><div id="timer-mode" class="mode-btn">Timer
+                </div><div id="free-mode" class="mode-btn">Free</div>
             </div>
         </div>
         

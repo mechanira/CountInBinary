@@ -1,8 +1,31 @@
-let goal = 1;
+let goal = 0;
 let isCompleted = true;
 let timer = 0;
 let running = false;
-let timerInterval = 60000;
+let timerInterval;
+let mode = "speedrun"
+
+setGoal(parseInt(Math.random() * 255))
+
+let bits = document.querySelectorAll('.bit');
+bits.forEach(el => el.addEventListener('mousedown', event => {
+    toggleCheckbox(el);
+}));
+
+let modeBtns = document.querySelectorAll('.mode-btn');
+modeBtns.forEach(el => el.addEventListener('mousedown', event => {
+    modeBtns.forEach(btn => btn.classList.remove("active"));
+
+    el.classList.add("active");
+
+    if (el.id == "speedrun-mode") {
+        mode = "speedrun";
+    } else if (el.id == "timer-mode") {
+        mode = "timer";
+    } else {
+        mode = "free";
+    }
+}));
 
 function toggleCheckbox(element) {
     if (!running) {
@@ -14,44 +37,41 @@ function toggleCheckbox(element) {
     updateSum();
 }
 
-let bits = document.querySelectorAll('.bit');
-
-bits.forEach(el => el.addEventListener('mousedown', event => {
-    toggleCheckbox(el);
-}));
-
 function updateSum() {
     let sum = 0;
+
     document.querySelectorAll('.bit.active').forEach(checkbox => {
         sum += parseInt(checkbox.getAttribute("data-value"));
     });
+
     document.getElementById("sum").textContent = sum;
+    document.getElementById("sum-prepend").textContent = "0".repeat(3 - sum.toString().length);
     
     bg = document.getElementById("site-container")
-
     if (sum === goal) {
         bg.style.backgroundColor = "#103010";
         setTimeout(() => {
             bg.style.backgroundColor = "#101010";
         }, 100);
 
-        if (sum == 255) {
-            running = false;
-            alert("You completed the challenge!")
-            return;
-        }
-
-        goal++;
-        document.getElementById("goal").textContent = goal;
+        setGoal(parseInt(Math.random() * 255))
     }
 }
 
+function setGoal(value) {
+    goal = value
+    document.getElementById("goal").textContent = value;
+    document.getElementById("goal-prepend").textContent = "0".repeat(3 - value.toString().length);
+}
+
 function startTimer() {
-    if (!running) {
-        running = true;
-        startTime = performance.now();
-        timerInterval = setInterval(updateTimer, 1);
+    if (running) {
+        return;
     }
+    
+    running = true;
+    startTime = performance.now();
+    timerInterval = setInterval(updateTimer, 1);
 }
 
 function updateTimer() {
@@ -79,13 +99,15 @@ function updateTimer() {
 }
 
 function resetTimer() {
-    goal = 1;
-    document.getElementById("goal").textContent = goal;
+    setGoal(parseInt(Math.random() * 255))
+
     document.querySelectorAll('.bit.active').forEach(bit => {
         bit.classList.remove("active")
         bit.textContent = "0"
     });
-    document.getElementById("sum").textContent = "0";
+
+    updateSum()
+
     clearInterval(timerInterval);
     running = false;
     document.getElementById("timer").textContent = "0.";
