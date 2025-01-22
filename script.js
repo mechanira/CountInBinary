@@ -42,7 +42,7 @@ modeBtns.forEach(el => el.addEventListener('mouseup', event => {
     if (running) {
         return;
     }
-    
+
     modeBtns.forEach(btn => btn.classList.remove("active"));
 
     el.classList.add("active");
@@ -81,7 +81,7 @@ modeBtns.forEach(el => el.addEventListener('mouseup', event => {
 }));
 
 function toggleBit(element) {
-    if (!running && !isCompleted) {
+    if (!running && !isCompleted && mode != "free") {
         startTimer();
     }
 
