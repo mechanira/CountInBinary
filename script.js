@@ -7,19 +7,26 @@ let mode = "speedrun"
 let points = 0;
 
 const timerModeSeconds = 600
+const enableDragClicking = false;
 
 setGoal(1)
 
 // handles drag clicking
-let mousedown = false
+let mousedown = false;
 let lastToggledElement = null;
-let enableDragClicking = false;
+let dragEnable = true;
 
 document.addEventListener("mousedown", (event) => {
     if (event.target.classList.contains("bit")) {
         if (enableDragClicking) {
             mousedown = true;
         }
+        if (event.target.classList.contains("active")) {
+            dragEnable = false; // if an active bit is clicked, only other active ones will be affected by dragging
+        } else {
+            dragEnable = true;
+        }
+
         toggleBit(event.target);
         lastToggledElement = event.target;
     }
@@ -32,8 +39,17 @@ document.addEventListener("mouseup", () => {
 
 document.addEventListener("mousemove", (event) => {
     if (mousedown && event.target.classList.contains("bit") && event.target !== lastToggledElement) {
-        toggleBit(event.target);
-        lastToggledElement = event.target;
+        if (event.target.classList.contains("active")) {
+            if (!dragEnable) {
+                toggleBit(event.target);
+                lastToggledElement = event.target;
+            }
+        } else if (!event.target.classList.contains("active")) {
+            if (dragEnable) {
+                toggleBit(event.target);
+                lastToggledElement = event.target;
+            }
+        }
     }
 });
 
