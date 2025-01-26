@@ -7,11 +7,10 @@ let mode = "speedrun"
 let points = 0;
 
 const timerModeSeconds = 600
-const enableDragClicking = false;
-
 setGoal(1)
 
 // handles drag clicking
+let enableDragClicking = false;
 let mousedown = false;
 let lastToggledElement = null;
 let dragEnable = true;
